@@ -18,7 +18,7 @@ export default class Nav extends React.Component {
                             height="30"
                             className="app-logo"
                         />{' '}
-                        Reversi
+                        Reversia
                     </Navbar.Brand>
                 </Navbar>
             </>
