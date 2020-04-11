@@ -3,7 +3,7 @@ import { Row } from 'react-bootstrap';
 import './board.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDesktop, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { faDesktop, faUserSecret, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 function Square(props) {
     // console.log("props.value");
@@ -11,13 +11,19 @@ function Square(props) {
     return (
         <button className="square" onClick={props.onClick}>
             {
-                (props.value === 27 || props.value === 36) && <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50'/>
+                (props.value === 27 || props.value === 36) &&
+                <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
             }
 
             {
-                (props.value === 28 || props.value === 35) && <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50'/>
+                (props.value === 28 || props.value === 35) &&
+                <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />
             }
-            
+            {
+                (props.value === 20 || props.value === 29 || props.value === 34 || props.value === 43) &&
+                <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
+            }
+
         </button>
     );
 }

@@ -12,3 +12,7 @@
     text-align: center;
     width: 50px;
 }
+
+.checkIcon:hover {
+    color: #2c3e50;
+}

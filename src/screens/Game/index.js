@@ -8,7 +8,7 @@ export default class Game extends React.Component {
         super(props);
         this.state = {
             squares: Array(64).fill(null),
-            xIsNext: true
+            userIsNext: true
         };
     }
 
