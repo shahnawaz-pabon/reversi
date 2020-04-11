@@ -10,7 +10,13 @@ export default class Nav extends React.Component {
         return (
             <>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="#home"
+                    style={{
+                        fontFamily: 'Ubuntu',
+                        fontWeight: 'bold',
+                        letterSpacing: 1
+                    }}
+                    >
                         <img
                             alt=""
                             src={logo}
@@ -18,7 +24,7 @@ export default class Nav extends React.Component {
                             height="30"
                             className="app-logo"
                         />{' '}
-                        Reversia
+                        Reversi Game
                     </Navbar.Brand>
                 </Navbar>
             </>
