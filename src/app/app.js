@@ -1,10 +1,10 @@
 import React from 'react';
 import './app.css';
-import Nav from '../components/Navbar';
+import Game from '../screens/Game';
 
 function App() {
   return (
-    <Nav />
+    <Game />
   );
 }
 
