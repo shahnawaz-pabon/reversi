@@ -13,7 +13,7 @@ export default class Game extends React.Component {
         };
     }
 
-    handleClick(i){
+    handleClick(i) {
         console.log(i);
     }
 
@@ -25,10 +25,16 @@ export default class Game extends React.Component {
         return (
             <>
                 <Navbar />
-                <Board
-                    squares={current.squares}
-                    onClick={(i) => this.handleClick(i)}
-                />
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '5%'
+                }}>
+                    <Board
+                        squares={current.squares}
+                        onClick={(i) => this.handleClick(i)}
+                    />
+                </div>
             </>
         );
     }

@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { Container, Row } from 'react-bootstrap';
+import './board.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Square(props) {
@@ -13,7 +14,7 @@ function Square(props) {
 export default class Board extends React.Component {
 
     renderSquare(i) {
-        console.log(i);
+        // console.log(i);
         return (
             <Square
                 value={this.props.squares[i]}
@@ -26,7 +27,7 @@ export default class Board extends React.Component {
 
         return (
             <div>
-                <div className="board-row">
+                <Row className="board-row">
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
@@ -35,8 +36,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(5)}
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(8)}
                     {this.renderSquare(9)}
                     {this.renderSquare(10)}
@@ -45,8 +46,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(13)}
                     {this.renderSquare(14)}
                     {this.renderSquare(15)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(16)}
                     {this.renderSquare(17)}
                     {this.renderSquare(18)}
@@ -55,8 +56,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(21)}
                     {this.renderSquare(22)}
                     {this.renderSquare(23)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(24)}
                     {this.renderSquare(25)}
                     {this.renderSquare(26)}
@@ -65,8 +66,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(29)}
                     {this.renderSquare(30)}
                     {this.renderSquare(31)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(32)}
                     {this.renderSquare(33)}
                     {this.renderSquare(34)}
@@ -75,8 +76,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(37)}
                     {this.renderSquare(38)}
                     {this.renderSquare(39)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(40)}
                     {this.renderSquare(41)}
                     {this.renderSquare(42)}
@@ -85,8 +86,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(45)}
                     {this.renderSquare(46)}
                     {this.renderSquare(47)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(48)}
                     {this.renderSquare(49)}
                     {this.renderSquare(50)}
@@ -95,8 +96,8 @@ export default class Board extends React.Component {
                     {this.renderSquare(53)}
                     {this.renderSquare(54)}
                     {this.renderSquare(55)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row className="board-row">
                     {this.renderSquare(56)}
                     {this.renderSquare(57)}
                     {this.renderSquare(58)}
@@ -105,7 +106,7 @@ export default class Board extends React.Component {
                     {this.renderSquare(61)}
                     {this.renderSquare(62)}
                     {this.renderSquare(63)}
-                </div>
+                </Row>
             </div>
         )
     }
