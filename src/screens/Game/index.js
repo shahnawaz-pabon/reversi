@@ -7,7 +7,7 @@ export default class Game extends React.Component {
         super(props);
         this.state = {
             history: [{
-                squares: Array(9).fill(null)
+                squares: Array(64).fill(null)
             }],
             xIsNext: true
         };
