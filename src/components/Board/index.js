@@ -1,15 +1,23 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import './board.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 function Square(props) {
-    // console.log(props);
+    // console.log("props.value");
+    // console.log(props.value);
     return (
         <button className="square" onClick={props.onClick}>
-            <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50'/>
+            {
+                (props.value === 27 || props.value === 36) && <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50'/>
+            }
+
+            {
+                (props.value === 28 || props.value === 35) && <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50'/>
+            }
+            
         </button>
     );
 }
@@ -20,7 +28,7 @@ export default class Board extends React.Component {
         // console.log(i);
         return (
             <Square
-                value={this.props.squares[i]}
+                value={i}
                 onClick={() => this.props.onClick(i)}
             />
         );

@@ -3,12 +3,11 @@ import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
 export default class Game extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            history: [{
-                squares: Array(64).fill(null)
-            }],
+            squares: Array(64).fill(null),
             xIsNext: true
         };
     }
@@ -19,9 +18,6 @@ export default class Game extends React.Component {
 
     render() {
 
-        const history = this.state.history;
-        const current = history[history.length - 1];
-
         return (
             <>
                 <Navbar />
@@ -31,7 +27,7 @@ export default class Game extends React.Component {
                     marginTop: '5%'
                 }}>
                     <Board
-                        squares={current.squares}
+                        squares={this.state.squares}
                         onClick={(i) => this.handleClick(i)}
                     />
                 </div>
