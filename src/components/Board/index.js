@@ -2,11 +2,14 @@ import React from 'react';
 import { Container, Row } from 'react-bootstrap';
 import './board.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDesktop, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 function Square(props) {
+    // console.log(props);
     return (
         <button className="square" onClick={props.onClick}>
-            {props.value}
+            <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50'/>
         </button>
     );
 }
