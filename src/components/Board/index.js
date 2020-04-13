@@ -7,10 +7,11 @@ import { faDesktop, faUserSecret, faCheckCircle } from '@fortawesome/free-solid-
 
 function Square(props) {
     // console.log("props.value");
-    // console.log(props.value);
+    // console.log(props.position.x);
+    // console.log(props.position.y);
     return (
         <button className="square" onClick={props.onClick}>
-            {
+            {/* {
                 (props.value === 27 || props.value === 36) &&
                 <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
             }
@@ -22,7 +23,7 @@ function Square(props) {
             {
                 (props.value === 20 || props.value === 29 || props.value === 34 || props.value === 43) &&
                 <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
-            }
+            } */}
 
         </button>
     );
@@ -30,99 +31,109 @@ function Square(props) {
 
 export default class Board extends React.Component {
 
-    renderSquare(i) {
+    renderSquare(x, y) {
         // console.log(i);
+        let position = {
+            x: x,
+            y: y
+        };
+
         return (
             <Square
-                value={i}
-                onClick={() => this.props.onClick(i)}
+                position={position}
+                onClick={() => this.props.onClick(x, y)}
             />
         );
     }
 
     render() {
 
+        // console.log("this.props.trackMove");
+        // console.log(this.props.trackMove[3][3].used);
+        // this.props.trackMove[3][3].used = false;
+        // this.props.trackMove[3][3].direction = "up";
+
         return (
             <div>
                 <Row className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
+                    {this.renderSquare(0, 0)}
+                    {this.renderSquare(0, 1)}
+                    {this.renderSquare(0, 2)}
+                    {this.renderSquare(0, 3)}
+                    {this.renderSquare(0, 4)}
+                    {this.renderSquare(0, 5)}
+                    {this.renderSquare(0, 6)}
+                    {this.renderSquare(0, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(8)}
-                    {this.renderSquare(9)}
-                    {this.renderSquare(10)}
-                    {this.renderSquare(11)}
-                    {this.renderSquare(12)}
-                    {this.renderSquare(13)}
-                    {this.renderSquare(14)}
-                    {this.renderSquare(15)}
+                    {this.renderSquare(1, 0)}
+                    {this.renderSquare(1, 1)}
+                    {this.renderSquare(1, 2)}
+                    {this.renderSquare(1, 3)}
+                    {this.renderSquare(1, 4)}
+                    {this.renderSquare(1, 5)}
+                    {this.renderSquare(1, 6)}
+                    {this.renderSquare(1, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(16)}
-                    {this.renderSquare(17)}
-                    {this.renderSquare(18)}
-                    {this.renderSquare(19)}
-                    {this.renderSquare(20)}
-                    {this.renderSquare(21)}
-                    {this.renderSquare(22)}
-                    {this.renderSquare(23)}
+                    {this.renderSquare(2, 0)}
+                    {this.renderSquare(2, 1)}
+                    {this.renderSquare(2, 2)}
+                    {this.renderSquare(2, 3)}
+                    {this.renderSquare(2, 4)}
+                    {this.renderSquare(2, 5)}
+                    {this.renderSquare(2, 6)}
+                    {this.renderSquare(2, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(24)}
-                    {this.renderSquare(25)}
-                    {this.renderSquare(26)}
-                    {this.renderSquare(27)}
-                    {this.renderSquare(28)}
-                    {this.renderSquare(29)}
-                    {this.renderSquare(30)}
-                    {this.renderSquare(31)}
+                    {this.renderSquare(3, 0)}
+                    {this.renderSquare(3, 1)}
+                    {this.renderSquare(3, 2)}
+                    {this.renderSquare(3, 3)}
+                    {this.renderSquare(3, 4)}
+                    {this.renderSquare(3, 5)}
+                    {this.renderSquare(3, 6)}
+                    {this.renderSquare(3, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(32)}
-                    {this.renderSquare(33)}
-                    {this.renderSquare(34)}
-                    {this.renderSquare(35)}
-                    {this.renderSquare(36)}
-                    {this.renderSquare(37)}
-                    {this.renderSquare(38)}
-                    {this.renderSquare(39)}
+                    {this.renderSquare(4, 0)}
+                    {this.renderSquare(4, 1)}
+                    {this.renderSquare(4, 2)}
+                    {this.renderSquare(4, 3)}
+                    {this.renderSquare(4, 4)}
+                    {this.renderSquare(4, 5)}
+                    {this.renderSquare(4, 6)}
+                    {this.renderSquare(4, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(40)}
-                    {this.renderSquare(41)}
-                    {this.renderSquare(42)}
-                    {this.renderSquare(43)}
-                    {this.renderSquare(44)}
-                    {this.renderSquare(45)}
-                    {this.renderSquare(46)}
-                    {this.renderSquare(47)}
+                    {this.renderSquare(5, 0)}
+                    {this.renderSquare(5, 1)}
+                    {this.renderSquare(5, 2)}
+                    {this.renderSquare(5, 3)}
+                    {this.renderSquare(5, 4)}
+                    {this.renderSquare(5, 5)}
+                    {this.renderSquare(5, 6)}
+                    {this.renderSquare(5, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(48)}
-                    {this.renderSquare(49)}
-                    {this.renderSquare(50)}
-                    {this.renderSquare(51)}
-                    {this.renderSquare(52)}
-                    {this.renderSquare(53)}
-                    {this.renderSquare(54)}
-                    {this.renderSquare(55)}
+                    {this.renderSquare(6, 0)}
+                    {this.renderSquare(6, 1)}
+                    {this.renderSquare(6, 2)}
+                    {this.renderSquare(6, 3)}
+                    {this.renderSquare(6, 4)}
+                    {this.renderSquare(6, 5)}
+                    {this.renderSquare(6, 6)}
+                    {this.renderSquare(6, 7)}
                 </Row>
                 <Row className="board-row">
-                    {this.renderSquare(56)}
-                    {this.renderSquare(57)}
-                    {this.renderSquare(58)}
-                    {this.renderSquare(59)}
-                    {this.renderSquare(60)}
-                    {this.renderSquare(61)}
-                    {this.renderSquare(62)}
-                    {this.renderSquare(63)}
+                    {this.renderSquare(7, 0)}
+                    {this.renderSquare(7, 1)}
+                    {this.renderSquare(7, 2)}
+                    {this.renderSquare(7, 3)}
+                    {this.renderSquare(7, 4)}
+                    {this.renderSquare(7, 5)}
+                    {this.renderSquare(7, 6)}
+                    {this.renderSquare(7, 7)}
                 </Row>
             </div>
         )

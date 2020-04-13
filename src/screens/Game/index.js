@@ -2,6 +2,13 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
+var trackMoveObjects = function(x, y) {
+    return {
+        "direction" : x,
+        "used" : y
+    };
+};
+
 export default class Game extends React.Component {
 
     constructor(props) {
@@ -9,17 +16,22 @@ export default class Game extends React.Component {
 
         let trackMove = [];
 
-        let trackMoveObjects = {
-            direction: "sad",
-            used: true
-        }
+        // let trackMoveObjects = {
+        //     direction: "",
+        //     used: false
+        // }
 
         for (let x = 0; x < 8; x++) {
             trackMove[x] = [];
             for (let y = 0; y < 8; y++) {
-                trackMove[x][y] = trackMoveObjects;
+                trackMove[x][y] = trackMoveObjects("", false);
             }
         }
+
+        trackMove[3][3].used = true;
+        trackMove[3][4].used = true;
+        trackMove[4][3].used = true;
+        trackMove[4][4].used = true;
 
         // var counter = 0;
 
@@ -36,12 +48,14 @@ export default class Game extends React.Component {
 
         this.state = {
             squares: Array(64).fill(null),
+            trackMove: trackMove,
             userIsNext: true
         };
     }
 
-    handleClick(i) {
-        console.log(i);
+    handleClick(x, y) {
+        console.log(x, y);
+        console.log(this.state.trackMove[x][y]);
     }
 
     render() {
@@ -56,7 +70,8 @@ export default class Game extends React.Component {
                 }}>
                     <Board
                         squares={this.state.squares}
-                        onClick={(i) => this.handleClick(i)}
+                        trackMove={this.state.trackMove}
+                        onClick={(x, y) => this.handleClick(x, y)}
                     />
                 </div>
             </>
