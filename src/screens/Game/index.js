@@ -16,11 +16,6 @@ export default class Game extends React.Component {
 
         let trackMove = [];
 
-        // let trackMoveObjects = {
-        //     direction: "",
-        //     used: false
-        // }
-
         for (let x = 0; x < 8; x++) {
             trackMove[x] = [];
             for (let y = 0; y < 8; y++) {
@@ -32,19 +27,10 @@ export default class Game extends React.Component {
         trackMove[3][4].used = true;
         trackMove[4][3].used = true;
         trackMove[4][4].used = true;
-
-        // var counter = 0;
-
-        // for (let x = 0; x < 8; x++) {
-        //     for (let y = 0; y < 8; y++) {
-        //         console.log(trackMove[x][y]);
-
-        //         counter++;
-        //     }
-        // }
-
-        // console.log("trackMove");
-        // console.log(counter);
+        trackMove[2][4].direction = "down";
+        trackMove[5][3].direction = "up";
+        trackMove[4][2].direction = "right";
+        trackMove[3][5].direction = "left";
 
         this.state = {
             squares: Array(64).fill(null),

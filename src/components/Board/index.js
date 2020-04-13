@@ -9,21 +9,28 @@ function Square(props) {
     // console.log("props.value");
     // console.log(props.position.x);
     // console.log(props.position.y);
+
     return (
         <button className="square" onClick={props.onClick}>
-            {/* {
-                (props.value === 27 || props.value === 36) &&
+
+            {
+                ((props.position.x === 3 && props.position.y === 3) ||
+                (props.position.x === 4 && props.position.y === 4)) &&
                 <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
             }
 
             {
-                (props.value === 28 || props.value === 35) &&
+                ((props.position.x === 3 && props.position.y === 4) ||
+                (props.position.x === 4 && props.position.y === 3)) &&
                 <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />
             }
             {
-                (props.value === 20 || props.value === 29 || props.value === 34 || props.value === 43) &&
+                ((props.position.x === 2 && props.position.y === 4) ||
+                (props.position.x === 4 && props.position.y === 2) ||
+                (props.position.x === 3 && props.position.y === 5) ||
+                (props.position.x === 5 && props.position.y === 3)) &&
                 <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
-            } */}
+            }
 
         </button>
     );
