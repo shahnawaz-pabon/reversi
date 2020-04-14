@@ -2,10 +2,11 @@ import React from 'react';
 import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
-var trackMoveObjects = function(x, y) {
+var trackMoveObjects = function(x, y, z) {
     return {
         "direction" : x,
-        "used" : y
+        "used" : y,
+        "name": z
     };
 };
 
@@ -19,14 +20,18 @@ export default class Game extends React.Component {
         for (let x = 0; x < 8; x++) {
             trackMove[x] = [];
             for (let y = 0; y < 8; y++) {
-                trackMove[x][y] = trackMoveObjects("", false);
+                trackMove[x][y] = trackMoveObjects("", false, "");
             }
         }
 
         trackMove[3][3].used = true;
+        trackMove[3][3].name = "user";
         trackMove[3][4].used = true;
+        trackMove[3][4].name = "computer";
         trackMove[4][3].used = true;
+        trackMove[4][3].name = "computer";
         trackMove[4][4].used = true;
+        trackMove[4][4].name = "user";
         trackMove[2][4].direction = "down";
         trackMove[5][3].direction = "up";
         trackMove[4][2].direction = "right";
