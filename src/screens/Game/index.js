@@ -44,9 +44,15 @@ export default class Game extends React.Component {
         };
     }
 
-    handleClick(x, y) {
-        console.log(x, y);
-        console.log(this.state.trackMove[x][y]);
+    handleClick(event, x, y) {
+        console.log("event");
+        console.log(event);
+        // let id = x+""+y;
+        // console.log(id);
+
+        // console.log(document.getElementById(id));
+        // console.log(x, y);
+        // console.log(this.state.trackMove[x][y]);
     }
 
     render() {
@@ -62,7 +68,7 @@ export default class Game extends React.Component {
                     <Board
                         squares={this.state.squares}
                         trackMove={this.state.trackMove}
-                        onClick={(x, y) => this.handleClick(x, y)}
+                        onClick={(event, x, y) => this.handleClick(event, x, y)}
                     />
                 </div>
             </>

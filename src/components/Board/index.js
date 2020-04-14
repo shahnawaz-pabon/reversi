@@ -9,26 +9,27 @@ function Square(props) {
     // console.log("props.value");
     // console.log(props.position.x);
     // console.log(props.position.y);
+    let id_of_button = props.position.x+""+props.position.y;
 
     return (
-        <button className="square" onClick={props.onClick}>
+        <button className="square" id={id_of_button} onClick={props.onClick}>
 
             {
                 ((props.position.x === 3 && props.position.y === 3) ||
-                (props.position.x === 4 && props.position.y === 4)) &&
+                    (props.position.x === 4 && props.position.y === 4)) &&
                 <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
             }
 
             {
                 ((props.position.x === 3 && props.position.y === 4) ||
-                (props.position.x === 4 && props.position.y === 3)) &&
+                    (props.position.x === 4 && props.position.y === 3)) &&
                 <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />
             }
             {
                 ((props.position.x === 2 && props.position.y === 4) ||
-                (props.position.x === 4 && props.position.y === 2) ||
-                (props.position.x === 3 && props.position.y === 5) ||
-                (props.position.x === 5 && props.position.y === 3)) &&
+                    (props.position.x === 4 && props.position.y === 2) ||
+                    (props.position.x === 3 && props.position.y === 5) ||
+                    (props.position.x === 5 && props.position.y === 3)) &&
                 <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
             }
 
@@ -37,6 +38,11 @@ function Square(props) {
 }
 
 export default class Board extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.iconRef = React.createRef();
+    }
 
     renderSquare(x, y) {
         // console.log(i);
@@ -48,7 +54,8 @@ export default class Board extends React.Component {
         return (
             <Square
                 position={position}
-                onClick={() => this.props.onClick(x, y)}
+                onClick={() => this.props.onClick(this.iconRef, x, y)}
+                // refs={this.iconRef}
             />
         );
     }
