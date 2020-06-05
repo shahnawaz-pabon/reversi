@@ -1,4 +1,5 @@
 <div align="center">
+  <img alt="Reversi" height="100px" width="100px" src="./src/assets/images/reversi.svg" />
   <h1>Reversi Game</h1>
 </div>
 
