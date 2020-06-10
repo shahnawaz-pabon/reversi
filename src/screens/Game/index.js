@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
@@ -9,7 +10,7 @@ var trackMoveObjects = function(x, y, z) {
     return {
         "direction" : x,
         "used" : y,
-        "name": z
+        "name": z,
     };
 };
 
@@ -58,7 +59,8 @@ export default class Game extends React.Component {
 
         console.log(document.getElementById(id));
         // console.log(x, y);
-        // console.log(this.state.trackMove[x][y]);
+
+        console.log(this.state.trackMove[x][y]);
     }
 
     render() {
