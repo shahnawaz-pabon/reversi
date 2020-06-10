@@ -53,6 +53,9 @@ export default class Board extends React.Component {
 
         let key = "" + x + "" + y;
 
+        console.log("this.props.trackMove[x][y].direction");
+        console.log(this.props.trackMove[x][y].direction);
+
         return (
             <Square
                 key={key}
