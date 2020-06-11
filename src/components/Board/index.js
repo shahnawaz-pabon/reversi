@@ -14,7 +14,16 @@ function Square(props) {
     return (
         <button className="square" id={id_of_button} onClick={props.onClick}>
 
-            {
+            {(props.iconName === "user") && 
+            <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />}
+
+            {(props.iconName === "computer") && 
+            <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />}
+
+            {(props.iconName === "check") && 
+            <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />}
+
+            {/* {
                 ((props.position.x === 3 && props.position.y === 3) ||
                     (props.position.x === 4 && props.position.y === 4)) &&
                 <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
@@ -31,7 +40,8 @@ function Square(props) {
                     (props.position.x === 3 && props.position.y === 5) ||
                     (props.position.x === 5 && props.position.y === 3)) &&
                 <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
-            }
+            } */}
+            
 
         </button>
     );
@@ -61,6 +71,7 @@ export default class Board extends React.Component {
                 key={key}
                 position={position}
                 onClick={() => this.props.onClick(this.iconRef, x, y)}
+                iconName={this.props.trackMove[x][y].name}
             // refs={this.iconRef}
             />
         );

@@ -10,7 +10,7 @@ var trackMoveObjects = function(x, y, z) {
     return {
         "direction" : x,
         "used" : y,
-        "name": z,
+        "name": z
     };
 };
 
@@ -41,6 +41,13 @@ export default class Game extends React.Component {
         trackMove[4][2].direction = "right";
         trackMove[3][5].direction = "left";
 
+        /* Initial Available Moves */
+        trackMove[2][4].name = "check";
+        trackMove[4][2].name = "check";
+        trackMove[3][5].name = "check";
+        trackMove[5][3].name = "check";
+        /* Initial Available Moves */
+
         this.state = {
             squares: Array(64).fill(null),
             trackMove: trackMove,
@@ -61,6 +68,8 @@ export default class Game extends React.Component {
         // console.log(x, y);
 
         console.log(this.state.trackMove[x][y]);
+
+        return (<FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />)
     }
 
     render() {
