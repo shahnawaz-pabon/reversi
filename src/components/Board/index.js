@@ -14,14 +14,14 @@ function Square(props) {
     return (
         <button className="square" id={id_of_button} onClick={props.onClick}>
 
-            {(props.iconName === "user") && 
-            <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />}
+            {(props.iconName === "user") &&
+                <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />}
 
-            {(props.iconName === "computer") && 
-            <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />}
+            {(props.iconName === "computer") &&
+                <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />}
 
-            {(props.iconName === "check") && 
-            <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />}
+            {(props.iconName === "check") &&
+                <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />}
 
             {/* {
                 ((props.position.x === 3 && props.position.y === 3) ||
@@ -41,7 +41,7 @@ function Square(props) {
                     (props.position.x === 5 && props.position.y === 3)) &&
                 <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
             } */}
-            
+
 
         </button>
     );
@@ -52,6 +52,29 @@ export default class Board extends React.Component {
     constructor(props) {
         super(props);
         this.iconRef = React.createRef();
+        // console.log(props.trackMove);
+        this.state = {
+            trackMove: props.trackMove
+        }
+    }
+
+    handleClick(posX, posY) {
+
+        console.log(posX);
+        console.log(posY);
+
+        // this.state.trackMove[posX][posY].name = "user";
+
+        // console.log(this.state.trackMove[posX][posY]);
+
+        this.setState(prevState => {
+            prevState.trackMove[posX][posY].name = "user";
+
+            return {
+                ...prevState.trackMove
+            };
+        });
+
     }
 
     renderSquare(x, y) {
@@ -63,17 +86,37 @@ export default class Board extends React.Component {
 
         let key = "" + x + "" + y;
 
-        console.log("this.props.trackMove[x][y].direction");
-        console.log(this.props.trackMove[x][y].direction);
+        // console.log("this.props.trackMove[x][y].direction");
+        // console.log(this.props.trackMove[x][y].direction);
 
         return (
-            <Square
-                key={key}
-                position={position}
-                onClick={() => this.props.onClick(this.iconRef, x, y)}
-                iconName={this.props.trackMove[x][y].name}
-            // refs={this.iconRef}
-            />
+
+            <button key={key} className="square" onClick={() => this.handleClick(x, y)}>
+
+                {
+                    (this.state.trackMove[x][y].name === "user") &&
+                    <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' />
+                }
+
+                {
+                    (this.state.trackMove[x][y].name === "computer") &&
+                    <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />
+                }
+
+                {
+                    (this.state.trackMove[x][y].name === "check") &&
+                    <FontAwesomeIcon className="checkIcon" icon={faCheckCircle} size="lg" color='#999' />
+                }
+
+
+            </button>
+            // <Square
+            //     key={key}
+            //     position={position}
+            //     onClick={() => this.props.onClick(this.iconRef, x, y)}
+            //     iconName={this.props.trackMove[x][y].name}
+            // // refs={this.iconRef}
+            // />
         );
     }
 

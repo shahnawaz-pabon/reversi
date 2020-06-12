@@ -69,7 +69,9 @@ export default class Game extends React.Component {
 
         console.log(this.state.trackMove[x][y]);
 
-        return (<FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />)
+        this.state.trackMove[x][y].name = "user";
+
+        // return (<FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />)
     }
 
     render() {
