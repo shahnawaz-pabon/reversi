@@ -50,13 +50,19 @@ export default class Game extends React.Component {
         this.state = {
             squares: Array(64).fill(null),
             trackMove: trackMove,
-            userIsNext: true
+            userIsNext: true,
+            userCounter: 2,
+            computerCounter: 2
         };
     }
 
     handleClick(x, y) {
         let id = x + "" + y;
         console.log(id);
+
+        this.setState({
+            userIsNext: !this.state.userIsNext
+        });
 
         this.setState(prevState => {
             prevState.trackMove[x][y].name = "user";
@@ -68,7 +74,6 @@ export default class Game extends React.Component {
 
         console.log(this.state.trackMove[x][y]);
 
-        // return (<FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />)
     }
 
     render() {
@@ -76,6 +81,20 @@ export default class Game extends React.Component {
         return (
             <>
                 <Navbar />
+
+                <div style={{
+                    textAlign: "center",
+                    fontFamily: 'Ubuntu',
+                    fontWeight: 'bold',
+                    marginTop: 25
+                }}
+                >
+                    {
+                        (this.state.userIsNext) ?
+                            <h3>User's Turn</h3> :
+                            <h3>Computer's Turn</h3>
+                    }
+                </div>
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
