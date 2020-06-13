@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop, faUserSecret, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-var trackMoveObjects = function(x, y, z) {
+var trackMoveObjects = function (x, y, z) {
     return {
-        "direction" : x,
-        "used" : y,
+        "direction": x,
+        "used": y,
         "name": z
     };
 };
@@ -55,21 +54,19 @@ export default class Game extends React.Component {
         };
     }
 
-    handleClick(event, x, y) {
-        console.log("event");
-        console.log(event);
-
-        // console.log(x);
-        // console.log(y);
-        let id = x+""+y;
+    handleClick(x, y) {
+        let id = x + "" + y;
         console.log(id);
 
-        console.log(document.getElementById(id));
-        // console.log(x, y);
+        this.setState(prevState => {
+            prevState.trackMove[x][y].name = "user";
+
+            return {
+                ...prevState.trackMove
+            };
+        });
 
         console.log(this.state.trackMove[x][y]);
-
-        this.state.trackMove[x][y].name = "user";
 
         // return (<FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' />)
     }
@@ -87,7 +84,7 @@ export default class Game extends React.Component {
                     <Board
                         squares={this.state.squares}
                         trackMove={this.state.trackMove}
-                        onClick={(event, x, y) => this.handleClick(event, x, y)}
+                        onClick={(x, y) => this.handleClick(x, y)}
                     />
                 </div>
             </>
