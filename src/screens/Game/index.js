@@ -9,7 +9,15 @@ var trackMoveObjects = function (x, y, z) {
     return {
         "direction": x,
         "used": y,
-        "name": z
+        "name": z,
+        "left": false,
+        "right": false,
+        "up": false,
+        "down": false,
+        "upperLeft": false,
+        "upperRight": false,
+        "lowerLeft": false,
+        "lowerRight": false
     };
 };
 
