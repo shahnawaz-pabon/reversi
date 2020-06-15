@@ -79,17 +79,54 @@ export default class Game extends React.Component {
                 userIsNext: !this.state.userIsNext
             });
 
+            this.flipUserIcons(x, y);
+
+            // this.setState(prevState => {
+            //     prevState.trackMove[x][y].name = "user";
+
+            //     return {
+            //         ...prevState.trackMove
+            //     };
+            // });
+
+            // console.log(this.state.trackMove[x][y]);
+
+        }
+
+    }
+
+    flipUserIcons(row, col) {
+
+        if (this.state.trackMove[row][col].down) {
+
             this.setState(prevState => {
-                prevState.trackMove[x][y].name = "user";
+
+                for (let x = row; x < 8; x++) {
+
+                    if (prevState.trackMove[x][col].name === "computer" || prevState.trackMove[x][col].name === "check") {
+                        prevState.trackMove[x][col].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
 
                 return {
                     ...prevState.trackMove
                 };
             });
 
-            console.log(this.state.trackMove[x][y]);
-
         }
+        // if(this.state.trackMove[row][col].up){
+
+        // }
+        // if(this.state.trackMove[row][col].right){
+
+        // }
+        // if(this.state.trackMove[row][col].left){
+
+        // }
 
     }
 
