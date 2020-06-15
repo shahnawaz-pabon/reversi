@@ -73,19 +73,23 @@ export default class Game extends React.Component {
         let id = x + "" + y;
         console.log(id);
 
-        this.setState({
-            userIsNext: !this.state.userIsNext
-        });
+        if (this.state.trackMove[x][y].name === "check") {
 
-        this.setState(prevState => {
-            prevState.trackMove[x][y].name = "user";
+            this.setState({
+                userIsNext: !this.state.userIsNext
+            });
 
-            return {
-                ...prevState.trackMove
-            };
-        });
+            this.setState(prevState => {
+                prevState.trackMove[x][y].name = "user";
 
-        console.log(this.state.trackMove[x][y]);
+                return {
+                    ...prevState.trackMove
+                };
+            });
+
+            console.log(this.state.trackMove[x][y]);
+
+        }
 
     }
 
