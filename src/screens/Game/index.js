@@ -118,15 +118,71 @@ export default class Game extends React.Component {
             });
 
         }
-        // if(this.state.trackMove[row][col].up){
+        if (this.state.trackMove[row][col].up) {
 
-        // }
-        // if(this.state.trackMove[row][col].right){
+            this.setState(prevState => {
 
-        // }
-        // if(this.state.trackMove[row][col].left){
+                for (let x = row; x >= 0; x--) {
 
-        // }
+                    if (prevState.trackMove[x][col].name === "computer" || prevState.trackMove[x][col].name === "check") {
+                        prevState.trackMove[x][col].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+
+                return {
+                    ...prevState.trackMove
+                };
+            });
+
+        }
+        if (this.state.trackMove[row][col].right) {
+
+            this.setState(prevState => {
+
+                for (let x = col; x < 8; x++) {
+
+                    if (prevState.trackMove[row][x].name === "computer" || prevState.trackMove[row][x].name === "check") {
+                        prevState.trackMove[row][x].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+
+                return {
+                    ...prevState.trackMove
+                };
+            });
+
+
+
+        }
+        if (this.state.trackMove[row][col].left) {
+
+            this.setState(prevState => {
+
+                for (let x = col; x >= 0; x--) {
+
+                    if (prevState.trackMove[row][x].name === "computer" || prevState.trackMove[row][x].name === "check") {
+                        prevState.trackMove[row][x].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+
+                return {
+                    ...prevState.trackMove
+                };
+            });
+
+        }
 
     }
 
