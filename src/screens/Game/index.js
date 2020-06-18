@@ -95,6 +95,10 @@ export default class Game extends React.Component {
 
     }
 
+    availableMoveForUser(){
+        
+    }
+
     flipUserIcons(row, col) {
 
         if (this.state.trackMove[row][col].down) {
