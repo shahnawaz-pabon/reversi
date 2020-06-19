@@ -283,9 +283,19 @@ export default class Game extends React.Component {
 
                     if (prevState.trackMove[x][y].name === "check"){
 
-                        prevState.trackMove[x][yield].name = "";
+                        prevState.trackMove[x][y].name = "";
 
                     }
+
+                    prevState.trackMove[x][y].up = false;
+                    prevState.trackMove[x][y].down = false;
+                    prevState.trackMove[x][y].left = false;
+                    prevState.trackMove[x][y].right = false;
+                    prevState.trackMove[x][y].upperLeft = false;
+                    prevState.trackMove[x][y].upperRight = false;
+                    prevState.trackMove[x][y].lowerLeft = false;
+                    prevState.trackMove[x][y].lowerRight = false;
+                    prevState.trackMove[x][y].counter = 0;
                     
                 }
             }
