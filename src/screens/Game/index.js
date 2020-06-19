@@ -275,6 +275,28 @@ export default class Game extends React.Component {
 
         }
 
+        this.setState(prevState => {
+
+            for (let x = 0; x < 8; x++) {
+            
+                for (let y = 0; y < 8; y++) {
+
+                    if (prevState.trackMove[x][y].name === "check"){
+
+                        prevState.trackMove[x][yield].name = "";
+
+                    }
+                    
+                }
+            }
+
+            return {
+                ...prevState.trackMove
+            };
+        });
+
+
+
     }
 
     render() {
