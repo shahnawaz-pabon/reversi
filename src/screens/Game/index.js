@@ -49,16 +49,16 @@ export default class Game extends React.Component {
         trackMove[4][2].direction = "right";
         trackMove[3][5].direction = "left";
 
-        trackMove[2][4].down = true;
-        trackMove[5][3].up = true;
-        trackMove[4][2].right = true;
-        trackMove[3][5].left = true;
+        // trackMove[2][4].down = true;
+        // trackMove[5][3].up = true;
+        // trackMove[4][2].right = true;
+        // trackMove[3][5].left = true;
 
         /* Initial Available Moves */
-        trackMove[2][4].name = "check";
-        trackMove[4][2].name = "check";
-        trackMove[3][5].name = "check";
-        trackMove[5][3].name = "check";
+        // trackMove[2][4].name = "check";
+        // trackMove[4][2].name = "check";
+        // trackMove[3][5].name = "check";
+        // trackMove[5][3].name = "check";
         /* Initial Available Moves */
 
         this.state = {
@@ -68,6 +68,10 @@ export default class Game extends React.Component {
             userCounter: 2,
             computerCounter: 2
         };
+    }
+
+    componentDidMount(){
+        this.availableMoveForUser();
     }
 
     handleClick(x, y) {
@@ -82,16 +86,6 @@ export default class Game extends React.Component {
 
             this.flipUserIcons(x, y);
 
-            // this.setState(prevState => {
-            //     prevState.trackMove[x][y].name = "user";
-
-            //     return {
-            //         ...prevState.trackMove
-            //     };
-            // });
-
-            // console.log(this.state.trackMove[x][y]);
-
         }
 
     }
@@ -103,39 +97,96 @@ export default class Game extends React.Component {
             for (let row = 0; row < 8; row++) {
 
                 for (let col = 0; col < 8; col++) {
-    
+
                     if (prevState.trackMove[row][col].name === "user") {
-    
-                        let cnt = 0;
-    
+
+                        let cnt = 0, temp;
+
                         // To Up direction
-                        for (let y = row - 1; y >= 0; y--) {
-    
-                            if (prevState.trackMove[row][col].name === "computer") {
+                        for (temp = row - 1; temp >= 0; temp--) {
+
+                            if (prevState.trackMove[temp][col].name === "computer") {
                                 cnt++;
-                            } else if (prevState.track[y][col] >= 0 && cnt > 0) {
-                                prevState.track[y][col].counter += cnt;
-                                prevState.track[y][col].up = true;
+                            } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[temp][col].counter += cnt;
+                                prevState.trackMove[temp][col].down = true;
+                                prevState.trackMove[temp][col].name = "check";
                                 break;
                             } else {
                                 break;
                             }
-    
+
                         }
-    
+
+
+                        // To Down direction
+                        cnt = 0;
+                        for (temp = row + 1; temp < 8; temp++) {
+
+                            if (prevState.trackMove[temp][col].name === "computer") {
+                                cnt++;
+                            } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[temp][col].counter += cnt;
+                                prevState.trackMove[temp][col].up = true;
+                                prevState.trackMove[temp][col].name = "check";
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+                        // To Right direction
+                        cnt = 0;
+                        for (temp = col + 1; temp < 8; temp++) {
+
+                            if (prevState.trackMove[col][temp].name === "computer") {
+                                cnt++;
+                            } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[col][temp].counter += cnt;
+                                prevState.trackMove[col][temp].left = true;
+                                prevState.trackMove[col][temp].name = "check";
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+                        // To Left direction
+                        cnt = 0;
+                        for (temp = col - 1; temp >= 0; temp--) {
+
+                            if (prevState.trackMove[col][temp].name === "computer") {
+                                cnt++;
+                            } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[col][temp].counter += cnt;
+                                prevState.trackMove[col][temp].right = true;
+                                prevState.trackMove[col][temp].name = "check";
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
                     }
-    
+
                 }
             }
 
             return {
                 ...prevState.trackMove
             };
-        })
+        });
+
+
 
     }
 
     flipUserIcons(row, col) {
+
+        console.log(this.state.trackMove[row][col]);
 
         if (this.state.trackMove[row][col].down) {
 
