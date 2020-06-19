@@ -17,7 +17,8 @@ var trackMoveObjects = function (x, y, z) {
         "upperLeft": false,
         "upperRight": false,
         "lowerLeft": false,
-        "lowerRight": false
+        "lowerRight": false,
+        "counter": 0
     };
 };
 
@@ -95,8 +96,43 @@ export default class Game extends React.Component {
 
     }
 
-    availableMoveForUser(){
-        
+    availableMoveForUser() {
+
+        this.setState(prevState => {
+
+            for (let row = 0; row < 8; row++) {
+
+                for (let col = 0; col < 8; col++) {
+    
+                    if (prevState.trackMove[row][col].name === "user") {
+    
+                        let cnt = 0;
+    
+                        // To Up direction
+                        for (let y = row - 1; y >= 0; y--) {
+    
+                            if (prevState.trackMove[row][col].name === "computer") {
+                                cnt++;
+                            } else if (prevState.track[y][col] >= 0 && cnt > 0) {
+                                prevState.track[y][col].counter += cnt;
+                                prevState.track[y][col].up = true;
+                                break;
+                            } else {
+                                break;
+                            }
+    
+                        }
+    
+                    }
+    
+                }
+            }
+
+            return {
+                ...prevState.trackMove
+            };
+        })
+
     }
 
     flipUserIcons(row, col) {
