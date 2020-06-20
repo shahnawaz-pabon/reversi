@@ -71,7 +71,7 @@ export default class Game extends React.Component {
     }
 
     componentDidMount(){
-        this.availableMoveForUser();
+        this.availableMoveForUser("user", "computer");
     }
 
     handleClick(x, y) {
@@ -90,7 +90,7 @@ export default class Game extends React.Component {
 
     }
 
-    availableMoveForUser() {
+    availableMoveForUser(currentName, checkName) {
 
         this.setState(prevState => {
 
@@ -98,14 +98,14 @@ export default class Game extends React.Component {
 
                 for (let col = 0; col < 8; col++) {
 
-                    if (prevState.trackMove[row][col].name === "user") {
+                    if (prevState.trackMove[row][col].name === currentName) {
 
                         let cnt = 0, temp;
 
                         // To Up direction
                         for (temp = row - 1; temp >= 0; temp--) {
 
-                            if (prevState.trackMove[temp][col].name === "computer") {
+                            if (prevState.trackMove[temp][col].name === checkName) {
                                 cnt++;
                             } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[temp][col].counter += cnt;
@@ -123,7 +123,7 @@ export default class Game extends React.Component {
                         cnt = 0;
                         for (temp = row + 1; temp < 8; temp++) {
 
-                            if (prevState.trackMove[temp][col].name === "computer") {
+                            if (prevState.trackMove[temp][col].name === checkName) {
                                 cnt++;
                             } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[temp][col].counter += cnt;
@@ -140,7 +140,7 @@ export default class Game extends React.Component {
                         cnt = 0;
                         for (temp = col + 1; temp < 8; temp++) {
 
-                            if (prevState.trackMove[col][temp].name === "computer") {
+                            if (prevState.trackMove[col][temp].name === checkName) {
                                 cnt++;
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
@@ -157,7 +157,7 @@ export default class Game extends React.Component {
                         cnt = 0;
                         for (temp = col - 1; temp >= 0; temp--) {
 
-                            if (prevState.trackMove[col][temp].name === "computer") {
+                            if (prevState.trackMove[col][temp].name === checkName) {
                                 cnt++;
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
