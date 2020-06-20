@@ -70,7 +70,7 @@ export default class Game extends React.Component {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.availableMoveForUser("user", "computer");
     }
 
@@ -110,7 +110,11 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[temp][col].counter += cnt;
                                 prevState.trackMove[temp][col].down = true;
-                                prevState.trackMove[temp][col].name = "check";
+
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[temp][col].name = "check";
+                                }
+
                                 break;
                             } else {
                                 break;
@@ -128,7 +132,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[temp][col].counter += cnt;
                                 prevState.trackMove[temp][col].up = true;
-                                prevState.trackMove[temp][col].name = "check";
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[temp][col].name = "check";
+                                }
                                 break;
                             } else {
                                 break;
@@ -145,7 +151,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
                                 prevState.trackMove[col][temp].left = true;
-                                prevState.trackMove[col][temp].name = "check";
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[col][temp].name = "check";
+                                }
                                 break;
                             } else {
                                 break;
@@ -162,7 +170,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
                                 prevState.trackMove[col][temp].right = true;
-                                prevState.trackMove[col][temp].name = "check";
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[col][temp].name = "check";
+                                }
                                 break;
                             } else {
                                 break;
@@ -278,10 +288,10 @@ export default class Game extends React.Component {
         this.setState(prevState => {
 
             for (let x = 0; x < 8; x++) {
-            
+
                 for (let y = 0; y < 8; y++) {
 
-                    if (prevState.trackMove[x][y].name === "check"){
+                    if (prevState.trackMove[x][y].name === "check") {
 
                         prevState.trackMove[x][y].name = "";
 
@@ -296,7 +306,7 @@ export default class Game extends React.Component {
                     prevState.trackMove[x][y].lowerLeft = false;
                     prevState.trackMove[x][y].lowerRight = false;
                     prevState.trackMove[x][y].counter = 0;
-                    
+
                 }
             }
 
