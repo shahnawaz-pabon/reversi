@@ -71,7 +71,7 @@ export default class Game extends React.Component {
     }
 
     componentDidMount() {
-        this.availableMoveForUser("user", "computer");
+        this.availableMoveForBoth("user", "computer");
     }
 
     handleClick(x, y) {
@@ -90,7 +90,7 @@ export default class Game extends React.Component {
 
     }
 
-    availableMoveForUser(currentName, checkName) {
+    availableMoveForBoth(currentName, checkName) {
 
         this.setState(prevState => {
 
@@ -179,6 +179,86 @@ export default class Game extends React.Component {
                             }
 
                         }
+
+                        // To UpperLeft direction
+                        cnt = 0;
+                        for (let tempRow = row - 1, tempCol = col - 1; tempRow >= 0 && tempCol >= 0; tempRow--, tempCol--) {
+
+                            if (prevState.trackMove[tempRow][tempCol].name === checkName) {
+                                cnt++;
+                            } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[tempRow][tempCol].counter += cnt;
+                                prevState.trackMove[tempRow][tempCol].right = true;
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[tempRow][tempCol].name = "check";
+                                }
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+                        // To LowerRight direction
+                        cnt = 0;
+                        for (let tempRow = row + 1, tempCol = col + 1; tempRow < 8 && tempCol < 8; tempRow++, tempCol++) {
+
+                            if (prevState.trackMove[tempRow][tempCol].name === checkName) {
+                                cnt++;
+                            } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[tempRow][tempCol].counter += cnt;
+                                prevState.trackMove[tempRow][tempCol].right = true;
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[tempRow][tempCol].name = "check";
+                                }
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+
+                        // To UpperRight direction
+                        cnt = 0;
+                        for (let tempRow = row - 1, tempCol = col + 1; tempRow >= 0 && tempCol < 8; tempRow--, tempCol++) {
+
+                            if (prevState.trackMove[tempRow][tempCol].name === checkName) {
+                                cnt++;
+                            } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[tempRow][tempCol].counter += cnt;
+                                prevState.trackMove[tempRow][tempCol].right = true;
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[tempRow][tempCol].name = "check";
+                                }
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+
+                        // To LowerLeft direction
+                        cnt = 0;
+                        for (let tempRow = row + 1, tempCol = col - 1; tempRow < 8 && tempCol >= 0; tempRow++, tempCol--) {
+
+                            if (prevState.trackMove[tempRow][tempCol].name === checkName) {
+                                cnt++;
+                            } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
+                                prevState.trackMove[tempRow][tempCol].counter += cnt;
+                                prevState.trackMove[tempRow][tempCol].right = true;
+                                if (this.state.userIsNext) {
+                                    prevState.trackMove[tempRow][tempCol].name = "check";
+                                }
+                                break;
+                            } else {
+                                break;
+                            }
+
+                        }
+
+                        
 
                     }
 
