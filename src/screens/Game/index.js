@@ -280,7 +280,7 @@ export default class Game extends React.Component {
 
         this.setState(prevState => {
 
-            if (this.state.trackMove[row][col].down) {
+            if (prevState.trackMove[row][col].down) {
 
                 for (let x = row; x < 8; x++) {
 
@@ -295,7 +295,7 @@ export default class Game extends React.Component {
 
             }
 
-            if (this.state.trackMove[row][col].up) {
+            if (prevState.trackMove[row][col].up) {
 
 
                 for (let x = row; x >= 0; x--) {
@@ -311,7 +311,7 @@ export default class Game extends React.Component {
 
             }
 
-            if (this.state.trackMove[row][col].right) {
+            if (prevState.trackMove[row][col].right) {
 
                 for (let x = col; x < 8; x++) {
 
@@ -326,7 +326,7 @@ export default class Game extends React.Component {
 
             }
 
-            if (this.state.trackMove[row][col].left) {
+            if (prevState.trackMove[row][col].left) {
 
                 for (let x = col; x >= 0; x--) {
 
@@ -339,6 +339,66 @@ export default class Game extends React.Component {
 
                 }
             }
+
+            
+            if (prevState.trackMove[row][col].upperLeft) {
+
+                for (let x = row, y = col; x >= 0 && y >= 0; x--, y--) {
+
+                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+            }
+
+            if (prevState.trackMove[row][col].upperRight) {
+
+                for (let x = row, y = col; x >= 0 && y < 8; x--, y++) {
+
+                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+            }
+
+            if (prevState.trackMove[row][col].lowerLeft) {
+
+                for (let x = row, y = col; x < 8 && y >= 8; x++, y--) {
+
+                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+            }
+
+
+            if (prevState.trackMove[row][col].lowerRight) {
+
+                for (let x = row, y = col; x < 8 && y < 8; x++, y++) {
+
+                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = "user";
+                    }
+                    else {
+                        break;
+                    }
+
+                }
+            }
+
+
 
             return {
                 ...prevState.trackMove
