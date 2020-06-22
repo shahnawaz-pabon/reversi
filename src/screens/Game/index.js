@@ -258,7 +258,7 @@ export default class Game extends React.Component {
 
                         }
 
-                        
+
 
                     }
 
@@ -276,11 +276,11 @@ export default class Game extends React.Component {
 
     flipUserIcons(row, col) {
 
-        console.log(this.state.trackMove[row][col]);
+        // console.log(this.state.trackMove[row][col]);
 
-        if (this.state.trackMove[row][col].down) {
+        this.setState(prevState => {
 
-            this.setState(prevState => {
+            if (this.state.trackMove[row][col].down) {
 
                 for (let x = row; x < 8; x++) {
 
@@ -293,15 +293,10 @@ export default class Game extends React.Component {
 
                 }
 
-                return {
-                    ...prevState.trackMove
-                };
-            });
+            }
 
-        }
-        if (this.state.trackMove[row][col].up) {
+            if (this.state.trackMove[row][col].up) {
 
-            this.setState(prevState => {
 
                 for (let x = row; x >= 0; x--) {
 
@@ -314,15 +309,9 @@ export default class Game extends React.Component {
 
                 }
 
-                return {
-                    ...prevState.trackMove
-                };
-            });
+            }
 
-        }
-        if (this.state.trackMove[row][col].right) {
-
-            this.setState(prevState => {
+            if (this.state.trackMove[row][col].right) {
 
                 for (let x = col; x < 8; x++) {
 
@@ -335,17 +324,9 @@ export default class Game extends React.Component {
 
                 }
 
-                return {
-                    ...prevState.trackMove
-                };
-            });
+            }
 
-
-
-        }
-        if (this.state.trackMove[row][col].left) {
-
-            this.setState(prevState => {
+            if (this.state.trackMove[row][col].left) {
 
                 for (let x = col; x >= 0; x--) {
 
@@ -357,13 +338,12 @@ export default class Game extends React.Component {
                     }
 
                 }
+            }
 
-                return {
-                    ...prevState.trackMove
-                };
-            });
-
-        }
+            return {
+                ...prevState.trackMove
+            };
+        });
 
         this.setState(prevState => {
 
