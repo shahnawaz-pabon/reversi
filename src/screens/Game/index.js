@@ -58,17 +58,32 @@ export default class Game extends React.Component {
         this.availableMoveForBoth("user", "computer");
     }
 
-    handleClick(x, y) {
+    async handleClick(x, y) {
         let id = x + "" + y;
         console.log(id);
 
         if (this.state.trackMove[x][y].name === "check") {
 
-            this.setState({
+            console.log("before set state");
+            console.log(this.state.userIsNext);
+
+            if (this.state.userIsNext) {
+                await this.flipIcons(x, y, "computer", "user");
+                await this.availableMoveForBoth("computer", "user");
+            }
+            else {
+                await this.flipIcons(x, y, "user", "computer");
+                await this.availableMoveForBoth("user", "computer");
+            }
+
+
+            await this.setState({
                 userIsNext: !this.state.userIsNext
             });
 
-            this.flipIcons(x, y, "computer", "user");
+            console.log("after set state");
+            console.log(this.state.userIsNext);
+
 
         }
 
@@ -95,9 +110,9 @@ export default class Game extends React.Component {
                                 prevState.trackMove[temp][col].counter += cnt;
                                 prevState.trackMove[temp][col].down = true;
 
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[temp][col].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[temp][col].name = "check";
+                                // }
 
                                 break;
                             } else {
@@ -116,9 +131,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[temp][col].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[temp][col].counter += cnt;
                                 prevState.trackMove[temp][col].up = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[temp][col].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[temp][col].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -135,9 +150,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
                                 prevState.trackMove[col][temp].left = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[col][temp].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[col][temp].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -154,9 +169,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[col][temp].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[col][temp].counter += cnt;
                                 prevState.trackMove[col][temp].right = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[col][temp].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[col][temp].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -173,9 +188,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].right = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[tempRow][tempCol].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[tempRow][tempCol].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -192,9 +207,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].right = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[tempRow][tempCol].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[tempRow][tempCol].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -212,9 +227,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].right = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[tempRow][tempCol].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[tempRow][tempCol].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -232,9 +247,9 @@ export default class Game extends React.Component {
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].right = true;
-                                if (this.state.userIsNext) {
-                                    prevState.trackMove[tempRow][tempCol].name = "check";
-                                }
+                                // if (this.state.userIsNext) {
+                                prevState.trackMove[tempRow][tempCol].name = "check";
+                                // }
                                 break;
                             } else {
                                 break;
@@ -254,75 +269,76 @@ export default class Game extends React.Component {
             };
         });
 
-        var mx = 0;
+        // var mx = 0;
 
-        var MxposX = -1;
-        var MxposY = -1;
+        // var MxposX = -1;
+        // var MxposY = -1;
 
-        var MnposX = -1;
-        var MnposY = -1;
+        // var MnposX = -1;
+        // var MnposY = -1;
 
 
-        if (currentName === "computer") {
+        // if (currentName === "computer") {
 
-            for (let x = 0; x < 8; x++) {
-                for (let y = 0; y < 8; y++) {
+        //     for (let x = 0; x < 8; x++) {
+        //         for (let y = 0; y < 8; y++) {
 
-                    if (this.state.trackMove[x][y].counter > 0) {
+        //             if (this.state.trackMove[x][y].counter > 0) {
 
-                        if (mx < this.state.trackMove[x][y].counter) {
+        //                 if (mx < this.state.trackMove[x][y].counter) {
 
-                            mx = this.state.trackMove[x][y].counter;
+        //                     mx = this.state.trackMove[x][y].counter;
 
-                            MxposX = x;
+        //                     MxposX = x;
 
-                            MxposY = y;
+        //                     MxposY = y;
 
-                        }
-                    }
-                }
-            }
+        //                 }
+        //             }
+        //         }
+        //     }
 
-            if (MxposX >= 0) {
-                this.flipIcons(MxposX, MxposY, "user", "computer");
-            }
-            else {
-                this.setState(prevState => {
+        //     if (MxposX >= 0) {
+        //         console.log(MxposX, MxposY);
+        //         // this.flipIcons(MxposX, MxposY, "user", "computer");
+        //     }
+        //     else {
+        //         this.setState(prevState => {
 
-                    for (let x = 0; x < 8; x++) {
+        //             for (let x = 0; x < 8; x++) {
 
-                        for (let y = 0; y < 8; y++) {
+        //                 for (let y = 0; y < 8; y++) {
 
-                            if (prevState.trackMove[x][y].name === "check") {
+        //                     if (prevState.trackMove[x][y].name === "check") {
 
-                                prevState.trackMove[x][y].name = "";
+        //                         prevState.trackMove[x][y].name = "";
 
-                            }
+        //                     }
 
-                            prevState.trackMove[x][y].up = false;
-                            prevState.trackMove[x][y].down = false;
-                            prevState.trackMove[x][y].left = false;
-                            prevState.trackMove[x][y].right = false;
-                            prevState.trackMove[x][y].upperLeft = false;
-                            prevState.trackMove[x][y].upperRight = false;
-                            prevState.trackMove[x][y].lowerLeft = false;
-                            prevState.trackMove[x][y].lowerRight = false;
-                            prevState.trackMove[x][y].counter = 0;
+        //                     prevState.trackMove[x][y].up = false;
+        //                     prevState.trackMove[x][y].down = false;
+        //                     prevState.trackMove[x][y].left = false;
+        //                     prevState.trackMove[x][y].right = false;
+        //                     prevState.trackMove[x][y].upperLeft = false;
+        //                     prevState.trackMove[x][y].upperRight = false;
+        //                     prevState.trackMove[x][y].lowerLeft = false;
+        //                     prevState.trackMove[x][y].lowerRight = false;
+        //                     prevState.trackMove[x][y].counter = 0;
 
-                        }
-                    }
+        //                 }
+        //             }
 
-                    return {
-                        ...prevState.trackMove
-                    };
-                });
+        //             return {
+        //                 ...prevState.trackMove
+        //             };
+        //         });
 
-                this.setState({
-                    userIsNext: !this.state.userIsNext
-                });
-            }
+        //         this.setState({
+        //             userIsNext: !this.state.userIsNext
+        //         });
+        //     }
 
-        }
+        // }
 
 
 
@@ -489,12 +505,12 @@ export default class Game extends React.Component {
             };
         });
 
-        console.log("this.state.userIsNext");
-        console.log(this.state.userIsNext);
+        // console.log("this.state.userIsNext");
+        // console.log(this.state.userIsNext);
 
-        if (!this.state.userIsNext) {
-            this.availableMoveForBoth("computer", "user");
-        }
+        // if (!this.state.userIsNext) {
+        //     this.availableMoveForBoth("computer", "user");
+        // }
 
     }
 
