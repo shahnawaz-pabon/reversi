@@ -44,22 +44,6 @@ export default class Game extends React.Component {
         trackMove[4][3].name = "computer";
         trackMove[4][4].used = true;
         trackMove[4][4].name = "user";
-        trackMove[2][4].direction = "down";
-        trackMove[5][3].direction = "up";
-        trackMove[4][2].direction = "right";
-        trackMove[3][5].direction = "left";
-
-        // trackMove[2][4].down = true;
-        // trackMove[5][3].up = true;
-        // trackMove[4][2].right = true;
-        // trackMove[3][5].left = true;
-
-        /* Initial Available Moves */
-        // trackMove[2][4].name = "check";
-        // trackMove[4][2].name = "check";
-        // trackMove[3][5].name = "check";
-        // trackMove[5][3].name = "check";
-        /* Initial Available Moves */
 
         this.state = {
             squares: Array(64).fill(null),
