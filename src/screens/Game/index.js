@@ -68,7 +68,7 @@ export default class Game extends React.Component {
                 userIsNext: !this.state.userIsNext
             });
 
-            this.flipUserIcons(x, y);
+            this.flipIcons(x, y, "computer", "user");
 
         }
 
@@ -254,11 +254,81 @@ export default class Game extends React.Component {
             };
         });
 
+        var mx = 0;
+
+        var MxposX = -1;
+        var MxposY = -1;
+
+        var MnposX = -1;
+        var MnposY = -1;
+
+
+        if (currentName === "computer") {
+
+            for (let x = 0; x < 8; x++) {
+                for (let y = 0; y < 8; y++) {
+
+                    if (this.state.trackMove[x][y].counter > 0) {
+
+                        if (mx < this.state.trackMove[x][y].counter) {
+
+                            mx = this.state.trackMove[x][y].counter;
+
+                            MxposX = x;
+
+                            MxposY = y;
+
+                        }
+                    }
+                }
+            }
+
+            if (MxposX >= 0) {
+                this.flipIcons(MxposX, MxposY, "user", "computer");
+            }
+            else {
+                this.setState(prevState => {
+
+                    for (let x = 0; x < 8; x++) {
+
+                        for (let y = 0; y < 8; y++) {
+
+                            if (prevState.trackMove[x][y].name === "check") {
+
+                                prevState.trackMove[x][y].name = "";
+
+                            }
+
+                            prevState.trackMove[x][y].up = false;
+                            prevState.trackMove[x][y].down = false;
+                            prevState.trackMove[x][y].left = false;
+                            prevState.trackMove[x][y].right = false;
+                            prevState.trackMove[x][y].upperLeft = false;
+                            prevState.trackMove[x][y].upperRight = false;
+                            prevState.trackMove[x][y].lowerLeft = false;
+                            prevState.trackMove[x][y].lowerRight = false;
+                            prevState.trackMove[x][y].counter = 0;
+
+                        }
+                    }
+
+                    return {
+                        ...prevState.trackMove
+                    };
+                });
+
+                this.setState({
+                    userIsNext: !this.state.userIsNext
+                });
+            }
+
+        }
+
 
 
     }
 
-    flipUserIcons(row, col) {
+    flipIcons(row, col, changeIconFrom, changeIconTo) {
 
         // console.log(this.state.trackMove[row][col]);
 
@@ -268,8 +338,8 @@ export default class Game extends React.Component {
 
                 for (let x = row; x < 8; x++) {
 
-                    if (prevState.trackMove[x][col].name === "computer" || prevState.trackMove[x][col].name === "check") {
-                        prevState.trackMove[x][col].name = "user";
+                    if (prevState.trackMove[x][col].name === changeIconFrom || prevState.trackMove[x][col].name === "check") {
+                        prevState.trackMove[x][col].name = changeIconTo;
                     }
                     else {
                         break;
@@ -284,8 +354,8 @@ export default class Game extends React.Component {
 
                 for (let x = row; x >= 0; x--) {
 
-                    if (prevState.trackMove[x][col].name === "computer" || prevState.trackMove[x][col].name === "check") {
-                        prevState.trackMove[x][col].name = "user";
+                    if (prevState.trackMove[x][col].name === changeIconFrom || prevState.trackMove[x][col].name === "check") {
+                        prevState.trackMove[x][col].name = changeIconTo;
                     }
                     else {
                         break;
@@ -299,8 +369,8 @@ export default class Game extends React.Component {
 
                 for (let x = col; x < 8; x++) {
 
-                    if (prevState.trackMove[row][x].name === "computer" || prevState.trackMove[row][x].name === "check") {
-                        prevState.trackMove[row][x].name = "user";
+                    if (prevState.trackMove[row][x].name === changeIconFrom || prevState.trackMove[row][x].name === "check") {
+                        prevState.trackMove[row][x].name = changeIconTo;
                     }
                     else {
                         break;
@@ -314,8 +384,8 @@ export default class Game extends React.Component {
 
                 for (let x = col; x >= 0; x--) {
 
-                    if (prevState.trackMove[row][x].name === "computer" || prevState.trackMove[row][x].name === "check") {
-                        prevState.trackMove[row][x].name = "user";
+                    if (prevState.trackMove[row][x].name === changeIconFrom || prevState.trackMove[row][x].name === "check") {
+                        prevState.trackMove[row][x].name = changeIconTo;
                     }
                     else {
                         break;
@@ -324,13 +394,13 @@ export default class Game extends React.Component {
                 }
             }
 
-            
+
             if (prevState.trackMove[row][col].upperLeft) {
 
                 for (let x = row, y = col; x >= 0 && y >= 0; x--, y--) {
 
-                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
-                        prevState.trackMove[x][y].name = "user";
+                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
                         break;
@@ -343,8 +413,8 @@ export default class Game extends React.Component {
 
                 for (let x = row, y = col; x >= 0 && y < 8; x--, y++) {
 
-                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
-                        prevState.trackMove[x][y].name = "user";
+                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
                         break;
@@ -357,8 +427,8 @@ export default class Game extends React.Component {
 
                 for (let x = row, y = col; x < 8 && y >= 8; x++, y--) {
 
-                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
-                        prevState.trackMove[x][y].name = "user";
+                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
                         break;
@@ -372,8 +442,8 @@ export default class Game extends React.Component {
 
                 for (let x = row, y = col; x < 8 && y < 8; x++, y++) {
 
-                    if (prevState.trackMove[x][y].name === "computer" || prevState.trackMove[x][y].name === "check") {
-                        prevState.trackMove[x][y].name = "user";
+                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                        prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
                         break;
@@ -419,7 +489,12 @@ export default class Game extends React.Component {
             };
         });
 
+        console.log("this.state.userIsNext");
+        console.log(this.state.userIsNext);
 
+        if (!this.state.userIsNext) {
+            this.availableMoveForBoth("computer", "user");
+        }
 
     }
 
