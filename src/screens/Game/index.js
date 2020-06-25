@@ -187,7 +187,7 @@ export default class Game extends React.Component {
                                 cnt++;
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
-                                prevState.trackMove[tempRow][tempCol].right = true;
+                                prevState.trackMove[tempRow][tempCol].lowerRight = true;
                                 // if (this.state.userIsNext) {
                                 prevState.trackMove[tempRow][tempCol].name = "check";
                                 // }
@@ -206,7 +206,7 @@ export default class Game extends React.Component {
                                 cnt++;
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
-                                prevState.trackMove[tempRow][tempCol].right = true;
+                                prevState.trackMove[tempRow][tempCol].upperLeft = true;
                                 // if (this.state.userIsNext) {
                                 prevState.trackMove[tempRow][tempCol].name = "check";
                                 // }
@@ -226,7 +226,7 @@ export default class Game extends React.Component {
                                 cnt++;
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
-                                prevState.trackMove[tempRow][tempCol].right = true;
+                                prevState.trackMove[tempRow][tempCol].lowerLeft = true;
                                 // if (this.state.userIsNext) {
                                 prevState.trackMove[tempRow][tempCol].name = "check";
                                 // }
@@ -246,7 +246,7 @@ export default class Game extends React.Component {
                                 cnt++;
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
-                                prevState.trackMove[tempRow][tempCol].right = true;
+                                prevState.trackMove[tempRow][tempCol].upperRight = true;
                                 // if (this.state.userIsNext) {
                                 prevState.trackMove[tempRow][tempCol].name = "check";
                                 // }
