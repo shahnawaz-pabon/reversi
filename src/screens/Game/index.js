@@ -10,13 +10,13 @@ var trackMoveObjects = function (x, y, z) {
         "direction": x,
         "used": y,
         "name": z,
+        "lowerLeft": false,
         "left": false,
         "right": false,
         "up": false,
         "down": false,
         "upperLeft": false,
         "upperRight": false,
-        "lowerLeft": false,
         "lowerRight": false,
         "counter": 0
     };
@@ -58,32 +58,32 @@ export default class Game extends React.Component {
         this.availableMoveForBoth("user", "computer");
     }
 
-    async handleClick(x, y) {
+    handleClick(x, y) {
         let id = x + "" + y;
         console.log(id);
 
         if (this.state.trackMove[x][y].name === "check") {
 
-            console.log("CLicked now");
+            // console.log("CLicked now");
             // console.log(this.state.userIsNext);
 
             console.log(this.state.trackMove[x][y]);
 
             if (this.state.userIsNext) {
-                await this.flipIcons(x, y, "computer", "user");
-                await this.availableMoveForBoth("computer", "user");
+                this.flipIcons(x, y, "computer", "user");
+                this.availableMoveForBoth("computer", "user");
                 console.log("For computer's move..");
             }
             else {
-                await this.flipIcons(x, y, "user", "computer");
-                await this.availableMoveForBoth("user", "computer");
+                this.flipIcons(x, y, "user", "computer");
+                this.availableMoveForBoth("user", "computer");
                 console.log("For user's move..");
             }
 
             // console.log(this.state.trackMove);
 
 
-            await this.setState({
+            this.setState({
                 userIsNext: !this.state.userIsNext
             });
 
@@ -95,9 +95,9 @@ export default class Game extends React.Component {
 
     }
 
-    async availableMoveForBoth(currentName, checkName) {
+    availableMoveForBoth(currentName, checkName) {
 
-        await this.setState(prevState => {
+        this.setState(prevState => {
 
             for (let row = 0; row < 8; row++) {
 
@@ -228,12 +228,17 @@ export default class Game extends React.Component {
                         cnt = 0;
                         for (let tempRow = row - 1, tempCol = col + 1; tempRow >= 0 && tempCol < 8; tempRow--, tempCol++) {
 
+                            
+                            // console.log(tempRow, tempCol);
                             if (prevState.trackMove[tempRow][tempCol].name === checkName) {
                                 cnt++;
+                                // console.log("checkName");
+                                // console.log(checkName);
+                                
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].lowerLeft = true;
-                                console.log("DHukse...");
+                                // console.log("DHukse...");
                                 // if (this.state.userIsNext) {
                                 prevState.trackMove[tempRow][tempCol].name = "check";
                                 // }
@@ -351,13 +356,13 @@ export default class Game extends React.Component {
 
     }
 
-    async flipIcons(row, col, changeIconFrom, changeIconTo) {
+    flipIcons(row, col, changeIconFrom, changeIconTo) {
 
         // console.log(this.state.trackMove);
         // console.log("row, col, changeIconFrom, changeIconTo");
         // console.log(row, col, changeIconFrom, changeIconTo);
 
-        await this.setState(prevState => {
+        this.setState(prevState => {
 
             if (prevState.trackMove[row][col].down) {
 
@@ -450,12 +455,10 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].lowerLeft) {
 
-                for (let x = row, y = col; x < 8 && y >= 8; x++, y--) {
+                for (let x = row, y = col; x < 8 && y >= 0; x++, y--) {
 
                     if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
                         prevState.trackMove[x][y].name = changeIconTo;
-                        console.log("lowerleft icon");
-                        console.log(prevState.trackMove[x][y].name);
                     }
                     else {
                         break;
