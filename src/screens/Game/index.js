@@ -228,13 +228,13 @@ export default class Game extends React.Component {
                         cnt = 0;
                         for (let tempRow = row - 1, tempCol = col + 1; tempRow >= 0 && tempCol < 8; tempRow--, tempCol++) {
 
-                            
+
                             // console.log(tempRow, tempCol);
                             if (prevState.trackMove[tempRow][tempCol].name === checkName) {
                                 cnt++;
                                 // console.log("checkName");
                                 // console.log(checkName);
-                                
+
                             } else if (prevState.trackMove[tempRow][tempCol].counter >= 0 && cnt > 0) {
                                 prevState.trackMove[tempRow][tempCol].counter += cnt;
                                 prevState.trackMove[tempRow][tempCol].lowerLeft = true;
@@ -364,11 +364,13 @@ export default class Game extends React.Component {
 
         this.setState(prevState => {
 
+            prevState.trackMove[row][col].name = changeIconTo;
+
             if (prevState.trackMove[row][col].down) {
 
-                for (let x = row; x < 8; x++) {
+                for (let x = row + 1; x < 8; x++) {
 
-                    if (prevState.trackMove[x][col].name === changeIconFrom || prevState.trackMove[x][col].name === "check") {
+                    if (prevState.trackMove[x][col].name === changeIconFrom) {
                         prevState.trackMove[x][col].name = changeIconTo;
                     }
                     else {
@@ -382,9 +384,9 @@ export default class Game extends React.Component {
             if (prevState.trackMove[row][col].up) {
 
 
-                for (let x = row; x >= 0; x--) {
+                for (let x = row - 1; x >= 0; x--) {
 
-                    if (prevState.trackMove[x][col].name === changeIconFrom || prevState.trackMove[x][col].name === "check") {
+                    if (prevState.trackMove[x][col].name === changeIconFrom) {
                         prevState.trackMove[x][col].name = changeIconTo;
                     }
                     else {
@@ -397,9 +399,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].right) {
 
-                for (let x = col; x < 8; x++) {
+                for (let x = col + 1; x < 8; x++) {
 
-                    if (prevState.trackMove[row][x].name === changeIconFrom || prevState.trackMove[row][x].name === "check") {
+                    if (prevState.trackMove[row][x].name === changeIconFrom) {
                         prevState.trackMove[row][x].name = changeIconTo;
                     }
                     else {
@@ -412,9 +414,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].left) {
 
-                for (let x = col; x >= 0; x--) {
+                for (let x = col - 1; x >= 0; x--) {
 
-                    if (prevState.trackMove[row][x].name === changeIconFrom || prevState.trackMove[row][x].name === "check") {
+                    if (prevState.trackMove[row][x].name === changeIconFrom) {
                         prevState.trackMove[row][x].name = changeIconTo;
                     }
                     else {
@@ -427,9 +429,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].upperLeft) {
 
-                for (let x = row, y = col; x >= 0 && y >= 0; x--, y--) {
+                for (let x = row - 1, y = col - 1; x >= 0 && y >= 0; x--, y--) {
 
-                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                    if (prevState.trackMove[x][y].name === changeIconFrom) {
                         prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
@@ -441,9 +443,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].upperRight) {
 
-                for (let x = row, y = col; x >= 0 && y < 8; x--, y++) {
+                for (let x = row - 1, y = col + 1; x >= 0 && y < 8; x--, y++) {
 
-                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                    if (prevState.trackMove[x][y].name === changeIconFrom) {
                         prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
@@ -455,9 +457,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].lowerLeft) {
 
-                for (let x = row, y = col; x < 8 && y >= 0; x++, y--) {
+                for (let x = row + 1, y = col - 1; x < 8 && y >= 0; x++, y--) {
 
-                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                    if (prevState.trackMove[x][y].name === changeIconFrom) {
                         prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
@@ -470,9 +472,9 @@ export default class Game extends React.Component {
 
             if (prevState.trackMove[row][col].lowerRight) {
 
-                for (let x = row, y = col; x < 8 && y < 8; x++, y++) {
+                for (let x = row + 1, y = col + 1; x < 8 && y < 8; x++, y++) {
 
-                    if (prevState.trackMove[x][y].name === changeIconFrom || prevState.trackMove[x][y].name === "check") {
+                    if (prevState.trackMove[x][y].name === changeIconFrom) {
                         prevState.trackMove[x][y].name = changeIconTo;
                     }
                     else {
