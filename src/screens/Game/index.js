@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar';
 import Board from '../../components/Board';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDesktop, faUserSecret, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDesktop, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 var trackMoveObjects = function (x, y, z) {
     return {
@@ -578,8 +578,14 @@ export default class Game extends React.Component {
                 }}
                 >
 
-                    <h3>User: {this.state.userCounter}</h3>
-                    <h3>Computer: {this.state.computerCounter}</h3>
+                    <h3>
+                        <FontAwesomeIcon icon={faUserSecret} size="lg" color='#2c3e50' style={{marginRight: 20}} />
+                        {this.state.userCounter}
+                    </h3>
+                    <h3>
+                        <FontAwesomeIcon icon={faDesktop} size="lg" color='#2c3e50' style={{marginRight: 20}} />
+                        {this.state.computerCounter}
+                    </h3>
 
                 </div>
 
