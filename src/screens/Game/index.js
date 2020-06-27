@@ -569,10 +569,24 @@ export default class Game extends React.Component {
                             <h3>Computer's Turn</h3>
                     }
                 </div>
+
+                <div style={{
+                    textAlign: "center",
+                    fontFamily: 'Ubuntu',
+                    fontWeight: 'bold',
+                    marginTop: 25
+                }}
+                >
+
+                    <h3>User: {this.state.userCounter}</h3>
+                    <h3>Computer: {this.state.computerCounter}</h3>
+
+                </div>
+
                 <div style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    marginTop: '5%'
+                    marginTop: '3%'
                 }}>
                     <Board
                         squares={this.state.squares}
