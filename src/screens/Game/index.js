@@ -5,18 +5,16 @@ import Board from '../../components/Board';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDesktop, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
-var trackMoveObjects = function (x, y, z) {
+var trackMoveObjects = function (initialName) {
     return {
-        "direction": x,
-        "used": y,
-        "name": z,
-        "lowerLeft": false,
+        "name": initialName,
         "left": false,
         "right": false,
         "up": false,
         "down": false,
         "upperLeft": false,
         "upperRight": false,
+        "lowerLeft": false,
         "lowerRight": false,
         "counter": 0
     };
@@ -32,17 +30,13 @@ export default class Game extends React.Component {
         for (let x = 0; x < 8; x++) {
             trackMove[x] = [];
             for (let y = 0; y < 8; y++) {
-                trackMove[x][y] = trackMoveObjects("", false, "");
+                trackMove[x][y] = trackMoveObjects("");
             }
         }
 
-        trackMove[3][3].used = true;
         trackMove[3][3].name = "user";
-        trackMove[3][4].used = true;
         trackMove[3][4].name = "computer";
-        trackMove[4][3].used = true;
         trackMove[4][3].name = "computer";
-        trackMove[4][4].used = true;
         trackMove[4][4].name = "user";
 
         this.state = {
