@@ -496,6 +496,8 @@ export default class Game extends React.Component {
 
         this.setState(prevState => {
 
+            let userCounter = 0, computerCounter = 0;
+
             for (let x = 0; x < 8; x++) {
 
                 for (let y = 0; y < 8; y++) {
@@ -503,6 +505,18 @@ export default class Game extends React.Component {
                     if (prevState.trackMove[x][y].name === "check") {
 
                         prevState.trackMove[x][y].name = "";
+
+                    }
+
+                    if (prevState.trackMove[x][y].name === "user") {
+
+                        userCounter++;
+
+                    }
+
+                    if (prevState.trackMove[x][y].name === "computer") {
+
+                        computerCounter++;
 
                     }
 
@@ -518,6 +532,9 @@ export default class Game extends React.Component {
 
                 }
             }
+
+            prevState.userCounter = userCounter;
+            prevState.computerCounter = computerCounter;
 
             return {
                 ...prevState.trackMove
