@@ -455,6 +455,8 @@ export default class Game extends React.Component {
 
                     if (prevState.trackMove[x][y].name === changeIconFrom) {
                         prevState.trackMove[x][y].name = changeIconTo;
+                        console.log("Setting icons wrong");
+                        console.log(x, y);
                     }
                     else {
                         break;
@@ -490,7 +492,7 @@ export default class Game extends React.Component {
 
         this.setState(prevState => {
 
-            let userCounter = 0, computerCounter = 0;
+            var userCounter = 0, computerCounter = 0;
 
             for (let x = 0; x < 8; x++) {
 
@@ -501,13 +503,12 @@ export default class Game extends React.Component {
                         prevState.trackMove[x][y].name = "";
 
                     }
-
+                    
                     if (prevState.trackMove[x][y].name === "user") {
 
                         userCounter++;
 
                     }
-
                     if (prevState.trackMove[x][y].name === "computer") {
 
                         computerCounter++;
