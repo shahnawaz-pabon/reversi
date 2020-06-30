@@ -44,7 +44,8 @@ export default class Game extends React.Component {
             trackMove: trackMove,
             userIsNext: true,
             userCounter: 2,
-            computerCounter: 2
+            computerCounter: 2,
+            autoClick: null
         };
     }
 
@@ -55,11 +56,12 @@ export default class Game extends React.Component {
     handleClick(x, y) {
         let id = x + "" + y;
         console.log(id);
+        console.log(this.state.trackMove[x][y].name);
 
         if (this.state.trackMove[x][y].name === "check") {
 
-            // console.log("CLicked now");
-            // console.log(this.state.userIsNext);
+            console.log("CLicked now");
+            console.log(this.state.userIsNext);
 
             // console.log(this.state.trackMove[x][y]);
 
@@ -69,6 +71,7 @@ export default class Game extends React.Component {
                 console.log("For computer's move..");
             }
             else {
+                console.log("DHukse")
                 this.flipIcons(x, y, "user", "computer");
                 this.availableMoveForBoth("user", "computer");
                 console.log("For user's move..");
@@ -275,76 +278,50 @@ export default class Game extends React.Component {
             };
         });
 
-        // var mx = 0;
+        var mx = -1;
 
-        // var MxposX = -1;
-        // var MxposY = -1;
+        var MxposX = -1;
+        var MxposY = -1;
 
-        // var MnposX = -1;
-        // var MnposY = -1;
+        var MnposX = -1;
+        var MnposY = -1;
 
 
-        // if (currentName === "computer") {
+        if (currentName === "computer") {
 
-        //     for (let x = 0; x < 8; x++) {
-        //         for (let y = 0; y < 8; y++) {
+            for (let x = 0; x < 8; x++) {
+                for (let y = 0; y < 8; y++) {
+                    console.log(this.state.trackMove[x][y].name);
 
-        //             if (this.state.trackMove[x][y].counter > 0) {
+                    if (this.state.trackMove[x][y].name === "check") {
 
-        //                 if (mx < this.state.trackMove[x][y].counter) {
+                        // console.log("x,y");
+                        // console.log(x,y);
 
-        //                     mx = this.state.trackMove[x][y].counter;
+                        if (mx < this.state.trackMove[x][y].counter) {
 
-        //                     MxposX = x;
+                            mx = this.state.trackMove[x][y].counter;
 
-        //                     MxposY = y;
+                            MxposX = x;
 
-        //                 }
-        //             }
-        //         }
-        //     }
+                            MxposY = y;
 
-        //     if (MxposX >= 0) {
-        //         console.log(MxposX, MxposY);
-        //         // this.flipIcons(MxposX, MxposY, "user", "computer");
-        //     }
-        //     else {
-        //         this.setState(prevState => {
+                        }
+                    }
+                }
+            }
 
-        //             for (let x = 0; x < 8; x++) {
+            setTimeout(() => {
+                if (MxposX >= 0) {
+                    console.log(MxposX, MxposY);
+                    console.log(this.state.trackMove);
+                    // this.flipIcons(MxposX, MxposY, "user", "computer");
+                    this.handleClick(MxposX, MxposY);
+                    // this.state.autoClick.click()
+                }
+            }, 3000);
 
-        //                 for (let y = 0; y < 8; y++) {
-
-        //                     if (prevState.trackMove[x][y].name === "check") {
-
-        //                         prevState.trackMove[x][y].name = "";
-
-        //                     }
-
-        //                     prevState.trackMove[x][y].up = false;
-        //                     prevState.trackMove[x][y].down = false;
-        //                     prevState.trackMove[x][y].left = false;
-        //                     prevState.trackMove[x][y].right = false;
-        //                     prevState.trackMove[x][y].upperLeft = false;
-        //                     prevState.trackMove[x][y].upperRight = false;
-        //                     prevState.trackMove[x][y].lowerLeft = false;
-        //                     prevState.trackMove[x][y].lowerRight = false;
-        //                     prevState.trackMove[x][y].counter = 0;
-
-        //                 }
-        //             }
-
-        //             return {
-        //                 ...prevState.trackMove
-        //             };
-        //         });
-
-        //         this.setState({
-        //             userIsNext: !this.state.userIsNext
-        //         });
-        //     }
-
-        // }
+        }
 
 
 
@@ -591,6 +568,10 @@ export default class Game extends React.Component {
                         squares={this.state.squares}
                         trackMove={this.state.trackMove}
                         onClick={(x, y) => this.handleClick(x, y)}
+                        ref={button => {
+                            // assigns a reference so we can trigger it later
+                            this.state.autoClick = button;
+                        }}
                     />
                 </div>
             </>
