@@ -56,12 +56,10 @@ export default class Game extends React.Component {
     handleClick(x, y) {
         let id = x + "" + y;
         console.log(id);
-        console.log(this.state.trackMove[x][y].name);
 
         if (this.state.trackMove[x][y].name === "check") {
 
             console.log("CLicked now");
-            console.log(this.state.userIsNext);
 
             // console.log(this.state.trackMove[x][y]);
 
@@ -71,7 +69,6 @@ export default class Game extends React.Component {
                 console.log("For computer's move..");
             }
             else {
-                console.log("DHukse")
                 this.flipIcons(x, y, "user", "computer");
                 this.availableMoveForBoth("user", "computer");
                 console.log("For user's move..");
@@ -286,45 +283,37 @@ export default class Game extends React.Component {
         var MnposX = -1;
         var MnposY = -1;
 
-
         if (currentName === "computer") {
+            setTimeout(() => {
+                for (let x = 0; x < 8; x++) {
+                    for (let y = 0; y < 8; y++) {
 
-            for (let x = 0; x < 8; x++) {
-                for (let y = 0; y < 8; y++) {
-                    console.log(this.state.trackMove[x][y].name);
+                        if (this.state.trackMove[x][y].name === "check") {
 
-                    if (this.state.trackMove[x][y].name === "check") {
+                            // console.log(this.state.trackMove[x][y].name);
 
-                        // console.log("x,y");
-                        // console.log(x,y);
+                            if (mx < this.state.trackMove[x][y].counter) {
 
-                        if (mx < this.state.trackMove[x][y].counter) {
+                                mx = this.state.trackMove[x][y].counter;
 
-                            mx = this.state.trackMove[x][y].counter;
+                                MxposX = x;
 
-                            MxposX = x;
+                                MxposY = y;
 
-                            MxposY = y;
-
+                            }
                         }
                     }
                 }
-            }
 
-            setTimeout(() => {
-                if (MxposX >= 0) {
-                    console.log(MxposX, MxposY);
-                    console.log(this.state.trackMove);
-                    // this.flipIcons(MxposX, MxposY, "user", "computer");
+                // console.log("MxposX, MxposY");
+                // console.log(MxposX, MxposY);
+                if (MxposX >= 0) { // If there is any available move for computer
                     this.handleClick(MxposX, MxposY);
-                    // this.state.autoClick.click()
                 }
-            }, 3000);
+
+            }, 3000)
 
         }
-
-
-
     }
 
     flipIcons(row, col, changeIconFrom, changeIconTo) {
@@ -510,13 +499,6 @@ export default class Game extends React.Component {
                 ...prevState.trackMove
             };
         });
-
-        // console.log("this.state.userIsNext");
-        // console.log(this.state.userIsNext);
-
-        // if (!this.state.userIsNext) {
-        //     this.availableMoveForBoth("computer", "user");
-        // }
 
     }
 
