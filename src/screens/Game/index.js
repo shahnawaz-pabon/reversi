@@ -91,6 +91,8 @@ export default class Game extends React.Component {
 
     availableMoveForBoth(currentName, checkName) {
 
+        var isAvailableMove = false;
+
         this.setState(prevState => {
 
             for (let row = 0; row < 8; row++) {
@@ -112,6 +114,7 @@ export default class Game extends React.Component {
 
                                 if (!prevState.trackMove[temp][col].name) {
                                     prevState.trackMove[temp][col].name = "check";
+                                    isAvailableMove = true;
                                 }
 
                                 break;
@@ -133,6 +136,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[temp][col].up = true;
                                 if (!prevState.trackMove[temp][col].name) {
                                     prevState.trackMove[temp][col].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -152,6 +156,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[row][temp].left = true;
                                 if (!prevState.trackMove[row][temp].name) {
                                     prevState.trackMove[row][temp].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -171,6 +176,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[row][temp].right = true;
                                 if (!prevState.trackMove[row][temp].name) {
                                     prevState.trackMove[row][temp].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -190,6 +196,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[tempRow][tempCol].lowerRight = true;
                                 if (!prevState.trackMove[tempRow][tempCol].name) {
                                     prevState.trackMove[tempRow][tempCol].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -209,6 +216,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[tempRow][tempCol].upperLeft = true;
                                 if (!prevState.trackMove[tempRow][tempCol].name) {
                                     prevState.trackMove[tempRow][tempCol].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -235,6 +243,7 @@ export default class Game extends React.Component {
                                 // console.log("DHukse...");
                                 if (!prevState.trackMove[tempRow][tempCol].name) {
                                     prevState.trackMove[tempRow][tempCol].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -255,6 +264,7 @@ export default class Game extends React.Component {
                                 prevState.trackMove[tempRow][tempCol].upperRight = true;
                                 if (!prevState.trackMove[tempRow][tempCol].name) {
                                     prevState.trackMove[tempRow][tempCol].name = "check";
+                                    isAvailableMove = true;
                                 }
                                 break;
                             } else {
@@ -263,12 +273,13 @@ export default class Game extends React.Component {
 
                         }
 
-
-
                     }
 
                 }
             }
+
+            console.log("isAvailableMove before");
+            console.log(isAvailableMove);
 
             return {
                 ...prevState.trackMove
@@ -282,6 +293,10 @@ export default class Game extends React.Component {
 
         var MnposX = -1;
         var MnposY = -1;
+
+        console.log("isAvailableMove after");
+        console.log(isAvailableMove);
+
 
         if (currentName === "computer") {
             setTimeout(() => {
@@ -309,6 +324,9 @@ export default class Game extends React.Component {
                 // console.log(MxposX, MxposY);
                 if (MxposX >= 0) { // If there is any available move for computer
                     this.handleClick(MxposX, MxposY);
+                }
+                else {
+
                 }
 
             }, 3000)
@@ -454,6 +472,12 @@ export default class Game extends React.Component {
         // console.log("Changed trackMove");
         // console.log(this.state.trackMove);
 
+        this.resetTrackMove();
+
+    }
+
+    resetTrackMove() {
+        
         this.setState(prevState => {
 
             var userCounter = 0, computerCounter = 0;
@@ -499,7 +523,6 @@ export default class Game extends React.Component {
                 ...prevState.trackMove
             };
         });
-
     }
 
     render() {
