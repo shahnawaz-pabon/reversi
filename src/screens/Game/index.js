@@ -326,7 +326,11 @@ export default class Game extends React.Component {
                     this.handleClick(MxposX, MxposY);
                 }
                 else {
-
+                    this.resetTrackMove();
+                    this.availableMoveForBoth("user", "computer");
+                    this.setState({
+                        userIsNext: !this.state.userIsNext
+                    })
                 }
 
             }, 3000)
