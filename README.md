@@ -7,6 +7,7 @@
 ## Table of Contents
 * [Prerequisites](#prerequisites)
 * [Create React App](#create-react-app)
+* [Run App](#run-app)
 
 ## Prerequisites
 
@@ -21,3 +22,12 @@ $ npm start
 ```
 
 Your app will be running at [http://localhost:3000/](http://localhost:3000/)
+
+## Run App
+
+```bash
+$ git clone https://github.com/PabonSEC/reversi
+$ cd reversi
+$ npm install
+$ npm start
+```
