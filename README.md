@@ -3,11 +3,11 @@
   <h1>Reversi Game</h1>
 </div>
 
-
 ## Table of Contents
-* [Prerequisites](#prerequisites)
-* [Create React App](#create-react-app)
-* [Run App](#run-app)
+
+- [Prerequisites](#prerequisites)
+- [Create React App](#create-react-app)
+- [Run App](#run-app)
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Your app will be running at [http://localhost:3000/](http://localhost:3000/)
 ## Run App
 
 ```bash
-$ git clone https://github.com/PabonSEC/reversi
+$ git clone https://github.com/shahnawaz-pabon/reversi.git
 $ cd reversi
 $ npm install
 $ npm start
